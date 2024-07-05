@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #memo {
+            flex: 1;
+            width: 100%;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        #title {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="title">memo</div>
+    <div id="memo" contenteditable="true"></div>
+
+    <script>
+        function utf8ToBase64(str) {
+            var encoded = unescape(encodeURIComponent(str));
+            return btoa(encoded);
+        }
+
+        function base64ToUtf8(encoded) {
+            var decoded = atob(encoded);
+            return decodeURIComponent(escape(decoded));
+        }
+
+        function updateURLWithMemo() {
+            var memoText = document.getElementById("memo").innerText;
+            var encodedMemo = utf8ToBase64(memoText);
+            var newURL = window.location.origin + window.location.pathname + "#" + encodedMemo;
+            window.history.replaceState({ path: newURL }, '', newURL);
+        }
+
+        window.onload = function () {
+            var hash = window.location.hash.substr(1);
+            if (hash) {
+                var decodedMemo = base64ToUtf8(hash);
+                document.getElementById("memo").innerText = decodedMemo;
+            }
+
+            document.getElementById("memo").addEventListener("input", updateURLWithMemo);
+        };
+    </script>
+</body>
+
+</html>
