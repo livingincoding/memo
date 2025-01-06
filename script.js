@@ -43,14 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.execCommand('backColor', false, this.value);
     });
 
-    // fontSize 입력 처리 부분
-document.getElementById("fontSize").addEventListener("change", function () {
-    if (this.value) {
-        var fontSize = this.value + "px";  // px 단위로 변경
-        document.execCommand('fontSize', false, 5); // 임의로 fontSize를 5로 설정
-        document.getElementById("memo").style.fontSize = fontSize;
+document.getElementById("applyFontSize").addEventListener("click", function () {
+    var fontSize = document.getElementById("fontSize").value + "px";  // 사용자 입력을 px 단위로 변환
+    if (fontSize !== "px") {  // 입력값이 유효할 경우
+        document.execCommand('fontSize', false, 5); // fontSize를 임의로 5로 설정 (기존의 커맨드 적용)
+        document.getSelection().getRangeAt(0).startContainer.parentElement.style.fontSize = fontSize;  // 드래그된 텍스트에 적용
     }
 });
+
 
     document.getElementById("memo").addEventListener("click", function (event) {
         if (event.target.tagName === "A") {
