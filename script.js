@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 function utf8ToBase64(str) {
             var encoded = unescape(encodeURIComponent(str));
             return btoa(encoded);
@@ -111,3 +112,4 @@ if (currentDomain !== allowedDomain && currentDomain !== punycodeDomain) {
   alert("허용되지 않은 도메인입니다. 접속할 수 없습니다.");
   window.location.href = "about:blank";
 }
+});
