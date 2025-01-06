@@ -1,8 +1,8 @@
 button, input, select {
-  border-radius: 10px;
+ border-radius: 10px;
 background: #ffffff;
 box-shadow:  5px 5px 10px #bfbfbf,
-             -5px -5px 10px #ffffff;
+             -5px -5px 10px #ffffff
 }
 /* Global Styles */
         * {
