@@ -43,11 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.execCommand('backColor', false, this.value);
     });
 
-    document.getElementById("fontSize").addEventListener("change", function () {
-        if (this.value) {
-            document.execCommand('fontSize', false, this.value);
-        }
-    });
+    // fontSize 입력 처리 부분
+document.getElementById("fontSize").addEventListener("change", function () {
+    if (this.value) {
+        var fontSize = this.value + "px";  // px 단위로 변경
+        document.execCommand('fontSize', false, 5); // 임의로 fontSize를 5로 설정
+        document.getElementById("memo").style.fontSize = fontSize;
+    }
+});
 
     document.getElementById("memo").addEventListener("click", function (event) {
         if (event.target.tagName === "A") {
