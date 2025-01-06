@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.history.replaceState({ path: newURL }, '', newURL);
     }
 
-    function createLink() {
+    window.createLink = function () {
         var url = prompt("링크를 입력하세요 (http:// 또는 https://로 시작):");
         try {
             if (url && (url.startsWith("http://") || url.startsWith("https://"))) {
@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } catch (e) {
             console.error("링크 생성 중 오류 발생:", e);
         }
-    }
+    };
+
 
     document.getElementById("fontColor").addEventListener("input", function () {
         document.execCommand('foreColor', false, this.value);
