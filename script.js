@@ -82,4 +82,31 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("허용되지 않은 도메인입니다. 접속할 수 없습니다.");
         window.location.href = "about:blank";
     }
+    const bubbleContainer = document.querySelector('.bubble-container');
+
+function createBubble() {
+  const bubble = document.createElement('div');
+  bubble.classList.add('bubble');
+  
+  const size = Math.random() * 30 + 10; // 비눗방울 크기 랜덤
+  bubble.style.width = `${size}px`;
+  bubble.style.height = `${size}px`;
+  
+  // 위치 랜덤
+  bubble.style.left = `${Math.random() * window.innerWidth}px`;
+  
+  // 애니메이션을 위한 타이밍 지연
+  bubble.style.animationDuration = `${Math.random() * 2 + 4}s`; 
+  
+  bubbleContainer.appendChild(bubble);
+  
+  // 비눗방울이 끝나면 제거
+  setTimeout(() => {
+    bubble.remove();
+  }, 6000); // 애니메이션 지속 시간에 맞춰 비눗방울 삭제
+}
+
+// 비눗방울 생성 주기
+setInterval(createBubble, 200); // 200ms마다 비눗방울 생성
+
 });
