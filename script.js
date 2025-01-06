@@ -65,6 +65,41 @@ function utf8ToBase64(str) {
 
             document.getElementById("memo").addEventListener("input", updateURLWithMemo);
         };
+function showNotification(message, type) {
+            new Noty({
+                text: message,
+                type: type,
+                timeout: 3000 
+            }).show();
+        }
+
+      
+const originalConsoleLog = console.log;
+const originalConsoleError = console.error;
+const originalConsoleInfo = console.info;
+const originalConsoleWarn = console.warn;
+
+
+console.log = function(message) {
+    originalConsoleLog.apply(console, arguments);
+    showNotification(message, 'info');
+}
+
+console.error = function(message) {
+    originalConsoleError.apply(console, arguments);
+    showNotification(message, 'error');
+}
+
+console.info = function(message) {
+    originalConsoleInfo.apply(console, arguments);
+    showNotification(message, 'info');
+}
+
+console.warn = function(message) {
+    originalConsoleWarn.apply(console, arguments);
+  
+showNotification(message, 'warning');
+}
 const allowedDomain = "메모.온라인.한국";
 
 const currentDomain = window.location.hostname;
