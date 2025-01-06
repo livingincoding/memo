@@ -15,12 +15,7 @@
 background: #ffffff;
 box-shadow:  5px 5px 10px #bfbfbf,
              -5px -5px 10px #ffffff;">
-        <select id="fontSize">
-            <option value="">크기</option>
-            <option value="1">작게</option>
-            <option value="3">중간</option>
-            <option value="5">크게</option>
-        </select>
+        <input type="number" id="fontSize" placeholder="크기(px)" min="1">
         <button onclick="document.execCommand('bold')">굵게</button>
         <button onclick="document.execCommand('italic')">기울임</button>
         <button onclick="document.execCommand('underline')">밑줄</button>
