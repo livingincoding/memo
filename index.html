@@ -6,36 +6,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메모.온라인.한국</title>
     <meta name="google-site-verification" content="3XwtuwKHmPxmYCKs_y4flPNnIwRA_Vp-lidWBQ2hJU0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
-        body {
+        /* Global Styles */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             display: flex;
             flex-direction: column;
             height: 100vh;
-        }
-
-        #memo {
-            flex: 1;
-            width: 100%;
-            font-size: 18px;
-            padding: 10px;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            background-color: #f9f9f9;
+            color: #333;
         }
 
         #title {
             font-size: 24px;
             text-align: center;
             margin: 20px 0;
+            color: #444;
+        }
+
+        #toolbar {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        #toolbar button, 
+        #toolbar select, 
+        #toolbar input[type="color"] {
+            padding: 6px 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        #toolbar button:hover, 
+        #toolbar select:hover, 
+        #toolbar input[type="color"]:hover {
+            background-color: #f0f0f0;
+        }
+
+        #toolbar button:active {
+            background-color: #e0e0e0;
+        }
+
+        #memo {
+            flex: 1;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            line-height: 1.6;
+            border: none;
+            outline: none;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+
+        #footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        a[contenteditable="false"] {
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        a[contenteditable="false"]:hover {
+            text-decoration: none;
+        }
+
+        /* Scrollbar Styles */
+        #memo::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #memo::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 5px;
+        }
+
+        #memo::-webkit-scrollbar-thumb:hover {
+            background-color: #aaa;
+        }
+
+        #memo::-webkit-scrollbar-track {
+            background-color: #f9f9f9;
         }
     </style>
 </head>
 
 <body>
     <div id="title">메모</div>
+    <div id="toolbar">
+        <select id="fontSize">
+            <option value="">크기</option>
+            <option value="1">작게</option>
+            <option value="3">중간</option>
+            <option value="5">크게</option>
+        </select>
+        <button onclick="document.execCommand('bold')">굵게</button>
+        <button onclick="document.execCommand('italic')">기울임</button>
+        <button onclick="document.execCommand('underline')">밑줄</button>
+        <input type="color" id="fontColor" title="글씨 색상">
+        <input type="color" id="highlightColor" title="하이라이트 색상">
+        <button onclick="createLink()">링크</button>
+    </div>
     <div id="memo" contenteditable="true"></div>
-    <br><p style="text-align: center;">made by <a href="https://github.com/livingincoding" target="_blank">coding1129</a></p>
+    <div id="footer">
+        made by <a href="https://github.com/livingincoding" target="_blank">coding1129</a>
+    </div>
     <script src="script.js"></script>
 </body>
 
