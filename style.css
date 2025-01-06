@@ -1,8 +1,8 @@
 button, input, select {
   border-radius: 10px;
-  background: linear-gradient(225deg, #f0f0f0, #cacaca);
-  box-shadow: -5px 5px 14px #5a5a5a,
-              5px -5px 14px #ffffff;
+background: #ffffff;
+box-shadow:  5px 5px 10px #bfbfbf,
+             -5px -5px 10px #ffffff;
 }
 /* Global Styles */
         * {
